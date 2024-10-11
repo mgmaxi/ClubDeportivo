@@ -17,15 +17,14 @@
             android:id="@+id/imageViewLogo"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_margin="64dp"
-            tools:layout_editor_absoluteX="105dp"
-            tools:layout_editor_absoluteY="50dp"
+            android:layout_marginTop="64dp"
             tools:srcCompat="@drawable/logo" />
 
         <EditText
             android:id="@+id/editTextUsername"
             android:layout_width="match_parent"
             android:layout_height="61dp"
+            android:layout_marginTop="64dp"
             android:layout_marginStart="64dp"
             android:layout_marginEnd="64dp"
             android:ems="10"
@@ -34,8 +33,7 @@
             android:textColor="@color/white"
             android:backgroundTint="#91FFFFFF"
             android:textSize="20sp"
-            tools:layout_editor_absoluteX="85dp"
-            tools:layout_editor_absoluteY="281dp" />
+           />
 
         <EditText
             android:id="@+id/editTextTextPassword"
