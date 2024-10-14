@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".CarnetBuscar">
+    tools:context=".ComprobantePago">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,14 +14,14 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textViewCarnet"
+            android:id="@+id/textViewComprobante"
             android:layout_width="310dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="15dp"
             android:textSize="23sp"
             android:textStyle="bold"
-            android:text="Carnet"/>
+            android:text="Comprobante de pago"/>
 
         <ImageButton
             android:id="@+id/btnExit"
@@ -43,106 +43,96 @@
         android:padding="16dp">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewPerson"
-            android:layout_width="266dp"
-            android:layout_height="64dp"
-            android:layout_marginTop="16dp"
-            android:layout_gravity="center_horizontal"
-            app:cardBackgroundColor="#24507C"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="8dp">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="60dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp"
+            app:cardBackgroundColor="@android:color/white">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:padding="6dp">
+                android:layout_height="367dp"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                android:padding="16dp">
 
                 <ImageView
-                    android:id="@+id/imageViewCardLogo"
-                    android:layout_width="55dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="start|center_vertical"
-                    android:contentDescription="Logo"
-                    app:srcCompat="@drawable/logo" />
+                    android:id="@+id/logoImageView"
+                    android:layout_width="98dp"
+                    android:layout_height="85dp"
+                    android:layout_marginBottom="8dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/logo" />
 
-                <LinearLayout
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Comprobante de pago"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/textViewCardName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start|center_vertical"
-                        android:layout_marginStart="6dp"
-                        android:text="Nombre Apellido"
-                        android:textColor="#FFFFFF"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="8dp"
+                    android:background="@android:color/black"/>
 
-                    <TextView
-                        android:id="@+id/textViewCardDNI"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start|center_vertical"
-                        android:layout_marginStart="6dp"
-                        android:text="DNI"
-                        android:textColor="#FFFFFF"
-                        android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/fechaPagoTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="Fecha de pago: 01/01/2025"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    />
 
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/totalTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total. $15000.00"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/metodoPagoTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Método de Pago: Tarjeta de Crrédito"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/comprobanteTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
+                    android:text="N° de comprobante: 0010"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/buscarSocioLabel"
+        <Button
+            android:id="@+id/btnImprimirEnviar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="32dp"
-            android:text="Buscar Socio"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/dniEditText"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:background="@color/white"
-            android:hint="Ingrese DNI Socio"
-            android:inputType="number"
-            android:padding="8dp"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
-
-        <Button
-            android:id="@+id/btnBuscar"
-            android:layout_width="189dp"
-            android:layout_height="80dp"
             android:layout_gravity="center"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="35dp"
-            android:layout_marginEnd="32dp"
             android:backgroundTint="#63C37B"
-            android:drawableTop="@drawable/list_alt_24px"
-            android:drawablePadding="8dp"
-            android:gravity="center"
             android:padding="8dp"
-            app:cornerRadius="15dp"
-            android:text="Buscar"
+            android:text="Imprimir/Enviar"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
-    </LinearLayout>
 
+    </LinearLayout>
 
 
     <LinearLayout

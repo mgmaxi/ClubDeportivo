@@ -1,4 +1,4 @@
-package com.example.proyectoclubdeportivo
+package com.example.clubdeportivo
 
 import android.os.Bundle
 import android.view.View

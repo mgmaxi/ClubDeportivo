@@ -8,85 +8,93 @@
     android:orientation="vertical"
     tools:context=".Payment">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textViewPagos"
+            android:layout_width="310dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="15dp"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:text="Pagos"/>
+
+        <ImageButton
+            android:id="@+id/btnExit"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/circular_button"
+            android:padding="6dp"
+            android:src="@drawable/Exit"
+            android:scaleType="centerInside"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="655dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:background="@drawable/background_gradient"
         android:orientation="vertical"
         android:padding="16dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Pagos"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewPerson"
+            android:layout_width="266dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center_horizontal"
+            app:cardBackgroundColor="#24507C"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="8dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="6dp">
 
                 <ImageView
-                    android:id="@+id/btnSalir"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/imageViewCardLogo"
+                    android:layout_width="55dp"
                     android:layout_height="match_parent"
-                    android:contentDescription="Salir"
-                    android:src="@drawable/exit_to_app" />
+                    android:layout_gravity="start|center_vertical"
+                    android:contentDescription="Logo"
+                    app:srcCompat="@drawable/logo" />
 
-                <TextView
-                    android:id="@+id/btnSalirText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Salir"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textViewCardName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start|center_vertical"
+                        android:layout_marginStart="6dp"
+                        android:text="Nombre Apellido"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textViewCardDNI"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start|center_vertical"
+                        android:layout_marginStart="6dp"
+                        android:text="DNI"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp" />
+                </LinearLayout>
             </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/dataContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="52dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="52dp"
-            android:background="#24507C"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="6dp">
-
-            <ImageView
-                android:id="@+id/logoImageView"
-                android:layout_width="59dp"
-                android:layout_height="59dp"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/logo" />
-
-            <TextView
-                android:id="@+id/dataTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:maxLines="2"
-                android:text="Nombre y Apellido\nDNI (pantalla login)"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp" />
-
-        </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <EditText
             android:id="@+id/dniEditText"
@@ -233,7 +241,8 @@
                 android:layout_height="80dp"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:backgroundTint="#00BCD4"
+                app:cornerRadius="15dp"
+                android:backgroundTint="#BEDFF0"
                 android:drawableTop="@drawable/receipt"
                 android:text="Comprobante"
                 android:textColor="@android:color/black" />
@@ -243,8 +252,9 @@
                 android:layout_width="0dp"
                 android:layout_height="80dp"
                 android:layout_weight="1"
+                app:cornerRadius="15dp"
                 android:backgroundTint="#63C37B"
-                android:drawableTop="@drawable/credit_card"
+                android:drawableTop="@drawable/credit_card_white"
                 android:text="Pagar" />
         </LinearLayout>
 

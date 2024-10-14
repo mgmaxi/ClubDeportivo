@@ -1,4 +1,4 @@
-package com.example.proyectoclubdeportivo
+package com.example.clubdeportivo
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase

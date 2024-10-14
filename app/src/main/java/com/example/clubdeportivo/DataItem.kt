@@ -1,4 +1,4 @@
-package com.example.proyectoclubdeportivo
+package com.example.clubdeportivo
 
 data class DataItem (
     val id: Long,
