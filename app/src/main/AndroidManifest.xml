@@ -13,16 +13,37 @@
         android:theme="@style/Theme.ClubDeportivo"
         tools:targetApi="31" >
         <activity
-            android:name=".MainActivity2"
+            android:name=".Vencimientos"
             android:exported="false" />
         <activity
-            android:name=".test"
+            android:name=".Payment"
+            android:exported="false" />
+        <activity
+            android:name=".ListadoClases"
+            android:exported="false" />
+        <activity
+            android:name=".InscribirSocio"
+            android:exported="false" />
+        <activity
+            android:name=".DataItem"
+            android:exported="false" />
+        <activity
+            android:name=".DatabaseHelper"
+            android:exported="false" />
+        <activity
+            android:name=".ComprobantePago"
+            android:exported="false" />
+        <activity
+            android:name=".CarnetImprimir"
+            android:exported="false" />
+        <activity
+            android:name=".CarnetBuscar"
             android:exported="false" />
         <activity
             android:name=".MainMenu"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Login"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

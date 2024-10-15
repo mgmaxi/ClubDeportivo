@@ -19,9 +19,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="15dp"
+            android:text="Pagos"
             android:textSize="23sp"
-            android:textStyle="bold"
-            android:text="Pagos"/>
+            android:textStyle="bold" />
 
         <ImageButton
             android:id="@+id/btnExit"
@@ -30,8 +30,8 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/circular_button"
             android:padding="6dp"
-            android:src="@drawable/Exit"
-            android:scaleType="centerInside"/>
+            android:scaleType="centerInside"
+            android:src="@drawable/Exit" />
     </LinearLayout>
 
     <LinearLayout
@@ -46,8 +46,8 @@
             android:id="@+id/cardViewPerson"
             android:layout_width="266dp"
             android:layout_height="64dp"
-            android:layout_marginTop="16dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
             app:cardBackgroundColor="#24507C"
             app:cardCornerRadius="10dp"
             app:cardElevation="8dp">
@@ -241,23 +241,22 @@
                 android:layout_height="80dp"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                app:cornerRadius="15dp"
                 android:backgroundTint="#BEDFF0"
-                android:drawableTop="@drawable/receipt"
+                android:drawableTop="@drawable/iconReceipt"
                 android:text="Comprobante"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/black"
+                app:cornerRadius="10dp" />
 
             <Button
                 android:id="@+id/btnSubmint"
                 android:layout_width="0dp"
                 android:layout_height="80dp"
                 android:layout_weight="1"
-                app:cornerRadius="15dp"
                 android:backgroundTint="#63C37B"
-                android:drawableTop="@drawable/credit_card_white"
-                android:text="Pagar" />
+                android:drawableTop="@drawable/iconPayments"
+                android:text="Pagar"
+                app:cornerRadius="10dp" />
         </LinearLayout>
-
 
 
     </LinearLayout>
@@ -266,77 +265,83 @@
         android:id="@+id/btnBas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="0dp"
         android:background="@android:color/white"
         android:gravity="center"
         android:orientation="horizontal"
-        android:padding="8dp">
+        >
 
         <Button
             android:id="@+id/btnInicio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:backgroundTint="@android:color/white"
-            android:drawableTop="@drawable/home_bl"
-            android:drawablePadding="4dp"
+            android:drawableTop="@drawable/iconNavbarHome"
             android:gravity="center"
+            android:padding="10dp"
             android:text="Inicio"
             android:textColor="@color/black"
-            android:textSize="6sp" />
+            android:textSize="10sp"
+            android:textStyle="bold"/>
 
         <Button
             android:id="@+id/btnInscribir"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:backgroundTint="@android:color/white"
-            android:drawableTop="@drawable/person_add_24px"
-            android:drawablePadding="4dp"
+            android:drawableTop="@drawable/iconNavbarPersonAdd"
             android:gravity="center"
+            android:padding="10dp"
             android:text="Inscribir"
             android:textColor="@color/black"
-            android:textSize="6sp" />
+            android:textSize="10sp"
+            android:textStyle="bold"/>
 
         <Button
             android:id="@+id/btnClases"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:backgroundTint="@android:color/white"
-            android:drawableTop="@drawable/list_alt_24px"
+            android:drawableTop="@drawable/iconNavbarList"
             android:drawablePadding="4dp"
             android:gravity="center"
+            android:padding="10dp"
             android:text="Clases"
             android:textColor="@color/black"
-            android:textSize="6sp" />
+            android:textSize="10sp"
+            android:textStyle="bold"/>
 
         <Button
             android:id="@+id/btnPagos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:backgroundTint="@android:color/white"
-            android:drawableTop="@drawable/credit_card_bl"
+            android:drawableTop="@drawable/iconNavbarPayment"
             android:drawablePadding="4dp"
             android:gravity="center"
+            android:padding="10dp"
             android:text="Pagos"
             android:textColor="@color/black"
-            android:textSize="6sp" />
+            android:textSize="10sp"
+            android:textStyle="bold"/>
 
         <Button
             android:id="@+id/btnList"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:backgroundTint="@android:color/white"
-            android:drawableTop="@drawable/calendar_month_24px"
+            android:drawableTop="@drawable/iconNavbarExpirations"
             android:drawablePadding="4dp"
             android:gravity="center"
+            android:padding="10dp"
             android:text="Vencimientos"
             android:textColor="@color/black"
-            android:textSize="6sp" />
+            android:textSize="10sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
