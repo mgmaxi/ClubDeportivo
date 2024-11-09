@@ -5,106 +5,105 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".Payment"
     android:orientation="vertical"
-    tools:context=".Payment">
+    android:background="@drawable/background_gradient"
+    android:padding="0dp">
 
-    <LinearLayout
+    <View
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textViewPagos"
-            android:layout_width="310dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="15dp"
-            android:text="Pagos"
-            android:textSize="23sp"
-            android:textStyle="bold" />
-
-        <ImageButton
-            android:id="@+id/btnExit"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/circular_button"
-            android:padding="6dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/Exit" />
-    </LinearLayout>
+        android:layout_height="26dp"
+        android:background="#115495" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@drawable/background_gradient"
+        android:layout_marginStart="15dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/imageViewCardLogo"
+            android:layout_width="55dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start|center_vertical"
+            android:contentDescription="Logo"
+            app:srcCompat="@drawable/logo" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Admin"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/blueHard"
+            android:layout_marginStart="5dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="16dp"
+            android:gravity="end"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/btnExit"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:backgroundTint="@color/white"
+                android:contentDescription="Icono Salir"
+                android:src="@drawable/exit_to_app" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:text="Salir"
+                android:textColor="@color/blueHard"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/buscarSocioLabel"
+        android:layout_width="match_parent"
+        android:layout_height="527dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="28dp"
+        android:background="#FFFFFF"
+        android:elevation="2dp"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        app:cardCornerRadius="6dp">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewPerson"
-            android:layout_width="266dp"
-            android:layout_height="64dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            app:cardBackgroundColor="#24507C"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="8dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:padding="6dp">
-
-                <ImageView
-                    android:id="@+id/imageViewCardLogo"
-                    android:layout_width="55dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="start|center_vertical"
-                    android:contentDescription="Logo"
-                    app:srcCompat="@drawable/logo" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textViewCardName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start|center_vertical"
-                        android:layout_marginStart="6dp"
-                        android:text="Nombre Apellido"
-                        android:textColor="#FFFFFF"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/textViewCardDNI"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start|center_vertical"
-                        android:layout_marginStart="6dp"
-                        android:text="DNI"
-                        android:textColor="#FFFFFF"
-                        android:textSize="12sp" />
-                </LinearLayout>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginStart="20sp"
+        android:layout_marginTop="15sp"
+        android:layout_marginBottom="16dp"
+        android:text="Pagos"
+        android:textColor="@color/blueHard"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
         <EditText
             android:id="@+id/dniEditText"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="60dp"
             android:layout_marginEnd="32dp"
             android:background="@color/white"
-            android:hint="Ingrese DNI Socio"
+            android:backgroundTint="#EAECEF"
+            android:hint="Núnero de documento"
             android:inputType="number"
             android:padding="8dp"
             android:textColor="@color/black"
@@ -115,52 +114,61 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginTop="125dp"
+            android:layout_marginBottom="15dp"
             android:text="Importe a pagar: $0.00"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="87dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="4dp"
-            android:background="@android:color/white"
-            android:orientation="vertical"
-            android:padding="8dp">
+            android:layout_height="242dp"
+            android:layout_marginTop="140dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Seleccionar forma de pago"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <RadioGroup
-                android:id="@+id/rgOptions"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="8dp"
+                android:background="@android:color/white"
+                android:orientation="vertical"
+                android:padding="8dp">
 
-                <RadioButton
-                    android:id="@+id/rbCash"
+                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_marginEnd="32dp"
-                    android:text="Efectivo" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="Seleccionar forma de pago"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-                <RadioButton
-                    android:id="@+id/rbCard"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="50dp"
-                    android:text="Tarjeta" />
-            </RadioGroup>
+                <RadioGroup
+                    android:id="@+id/rgOptions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rbCash"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginEnd="32dp"
+                        android:checked="true"
+                        android:text="Efectivo" />
+
+                    <RadioButton
+                        android:id="@+id/rbCard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="50dp"
+                        android:text="Tarjeta" />
+                </RadioGroup>
+            </LinearLayout>
         </LinearLayout>
 
         <TextView
@@ -176,7 +184,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="260dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="8dp"
             android:background="@android:color/white"
@@ -186,7 +194,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:text="Cantidad de cuotas:"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -194,7 +203,8 @@
             <RadioGroup
                 android:id="@+id/rgCuotas"
                 android:layout_width="match_parent"
-                android:layout_height="91dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -207,7 +217,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:layout_marginEnd="32dp"
-                        android:checked="true"
+                        android:checked="false"
                         android:text="1 cuota" />
 
                     <RadioButton
@@ -215,135 +225,49 @@
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:layout_marginStart="50dp"
-                        android:text="2 cuotas" />
+                        android:checked="false"
+                        android:text="3 cuotas" />
                 </LinearLayout>
 
-                <RadioButton
-                    android:id="@+id/rb3Cuotas"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="10dp"
-                    android:text="3 cuotas" />
+
             </RadioGroup>
         </LinearLayout>
 
-        <LinearLayout
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSubmint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="32dp"
-            android:orientation="horizontal">
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="400dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="#63C37B"
+            android:fontFamily="sans-serif-medium"
+            android:padding="12dp"
+            android:text="Pagar"
+            android:textColor="@android:color/white"
+            app:cornerRadius="6dp" />
 
-            <Button
-                android:id="@+id/btnComprobante"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:backgroundTint="#BEDFF0"
-                android:drawableTop="@drawable/iconReceipt"
-                android:text="Comprobante"
-                android:textColor="@android:color/black"
-                app:cornerRadius="10dp" />
-
-            <Button
-                android:id="@+id/btnSubmint"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_weight="1"
-                android:backgroundTint="#63C37B"
-                android:drawableTop="@drawable/iconPayments"
-                android:text="Pagar"
-                app:cornerRadius="10dp" />
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/btnBas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:gravity="center"
-        android:orientation="horizontal"
-        >
-
-        <Button
-            android:id="@+id/btnInicio"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnComprobante"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:backgroundTint="@android:color/white"
-            android:drawableTop="@drawable/iconNavbarHome"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Inicio"
-            android:textColor="@color/black"
-            android:textSize="10sp"
-            android:textStyle="bold"/>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="460dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/bluesSoft"
+            android:fontFamily="sans-serif-medium"
+            android:padding="12dp"
+            android:text="Comprobante"
+            android:textColor="@android:color/white"
+            app:cornerRadius="6dp" />
 
-        <Button
-            android:id="@+id/btnInscribir"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:backgroundTint="@android:color/white"
-            android:drawableTop="@drawable/iconNavbarPersonAdd"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Inscribir"
-            android:textColor="@color/black"
-            android:textSize="10sp"
-            android:textStyle="bold"/>
 
-        <Button
-            android:id="@+id/btnClases"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:backgroundTint="@android:color/white"
-            android:drawableTop="@drawable/iconNavbarList"
-            android:drawablePadding="4dp"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Clases"
-            android:textColor="@color/black"
-            android:textSize="10sp"
-            android:textStyle="bold"/>
+    </androidx.cardview.widget.CardView>
 
-        <Button
-            android:id="@+id/btnPagos"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:backgroundTint="@android:color/white"
-            android:drawableTop="@drawable/iconNavbarPayment"
-            android:drawablePadding="4dp"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Pagos"
-            android:textColor="@color/black"
-            android:textSize="10sp"
-            android:textStyle="bold"/>
-
-        <Button
-            android:id="@+id/btnList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:backgroundTint="@android:color/white"
-            android:drawableTop="@drawable/iconNavbarExpirations"
-            android:drawablePadding="4dp"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Vencimientos"
-            android:textColor="@color/black"
-            android:textSize="10sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
+    <include
+        layout="@layout/activity_menu_bar"/>
 
 </LinearLayout>
+

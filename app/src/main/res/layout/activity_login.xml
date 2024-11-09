@@ -1,85 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="0dp"
+    android:background="@drawable/background_gradient"
     tools:context=".Login">
-    <LinearLayout
+
+    <View
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@drawable/background_gradient">
+        android:layout_height="26dp"
+        android:background="#115495" />
 
+    <ImageView
+        android:id="@+id/imageViewLogo"
+        android:layout_width="207dp"
+        android:layout_height="202dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:maxWidth="150dp"
+        android:maxHeight="150dp"
+        tools:srcCompat="@drawable/logo" />
 
-        <ImageView
-            android:id="@+id/imageViewLogo"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="64dp"
-            tools:srcCompat="@drawable/logo" />
-
-        <EditText
+    <EditText
             android:id="@+id/editTextUsername"
             android:layout_width="match_parent"
-            android:layout_height="61dp"
-            android:layout_marginTop="64dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginEnd="64dp"
-            android:ems="10"
-            android:inputType="text"
+            android:layout_height="wrap_content"
             android:text="Usuario"
+            android:padding="10dp"
             android:textColor="@color/white"
-            android:backgroundTint="#91FFFFFF"
-            android:textSize="20sp"
-           />
+            android:backgroundTint="@color/white"
+            android:layout_marginTop="90dp"
+            android:layout_marginHorizontal="46dp"
+            />
 
         <EditText
             android:id="@+id/editTextTextPassword"
             android:layout_width="match_parent"
-            android:layout_height="61dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginEnd="64dp"
-            android:ems="10"
-            android:textColor="@color/white"
-            android:backgroundTint="#91FFFFFF"
-            android:inputType="textPassword"
+            android:layout_height="wrap_content"
             android:text="Contraseña"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="376dp" />
-
-        <Button
-            android:id="@+id/btnLogin"
-            android:layout_width="match_parent"
-            android:layout_height="61dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginLeft="64dp"
-            android:layout_marginRight="64dp"
-            android:layout_marginBottom="12dp"
-            android:backgroundTint="#63C37B"
-            android:text="Iniciar sesión"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            app:cornerRadius="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="485dp" />
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/white"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="46dp"/>
 
         <TextView
-            android:id="@+id/textViewLogin"
+            android:id="@+id/textForgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¿Olvidó su contraseña? Haga click aquí"
+            android:textColor="@color/white"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="16dp"
+            android:layout_gravity="end"
+            android:textSize="12dp"/>
+
+
+    <Button
+            android:id="@+id/btnLogin"
             android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:text="¿Primera vez? Suscríbite"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            tools:layout_editor_absoluteX="74dp"
-            tools:layout_editor_absoluteY="560dp" />
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="46dp"
+            android:layout_marginTop="36dp"
+            android:textSize="17dp"
+            android:backgroundTint="#63C37B"
+            android:textColor="@android:color/white"
+            android:text="Iniciar sesión"
+            app:cornerRadius="6dp"/>
+
+    <TextView
+        android:id="@+id/textViewLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:text="¿NO TENÉS CUENTA? REGISTRATE."
+        android:textColor="#EDF0F4"
+        android:textSize="12sp" />
 
 
     </LinearLayout>
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>

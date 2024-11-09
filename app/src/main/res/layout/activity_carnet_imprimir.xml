@@ -5,66 +5,119 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".CarnetImprimir"
     android:orientation="vertical"
-    tools:context=".CarnetImprimir">
+    android:background="@drawable/background_gradient"
+    android:padding="0dp">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="26dp"
+        android:background="#115495" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/imageViewCardLogo"
+            android:layout_width="55dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start|center_vertical"
+            android:contentDescription="Logo"
+            app:srcCompat="@drawable/logo" />
 
         <TextView
-            android:id="@+id/txtCarnet"
-            android:layout_width="310dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="15dp"
-            android:textSize="23sp"
+            android:layout_weight="1"
+            android:text="Admin"
+            android:textSize="18sp"
             android:textStyle="bold"
-            android:text="Carnet"/>
+            android:textColor="@color/blueHard"
+            android:layout_marginStart="5dp" />
 
-        <ImageButton
-            android:id="@+id/btnExit"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/circular_button"
-            android:padding="6dp"
-            android:src="@drawable/Exit"
-            android:scaleType="centerInside"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="16dp"
+            android:gravity="end"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/btnExit"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:backgroundTint="@color/white"
+                android:contentDescription="Icono Salir"
+                android:src="@drawable/exit_to_app" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:text="Salir"
+                android:textColor="@color/blueHard"
+                android:textSize="12sp" />
+        </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
+        android:id="@+id/buscarSocioLabel"
         android:layout_width="match_parent"
-        android:layout_height="655dp"
-        android:layout_weight="1"
-        android:background="@drawable/background_gradient"
+        android:layout_height="527dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="28dp"
+        android:background="#FFFFFF"
+        android:elevation="2dp"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        app:cardCornerRadius="6dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="15sp"
+            android:layout_marginBottom="16dp"
+            android:text="Carnet"
+            android:textColor="@color/blueHard"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_width="300dp"
+            android:layout_height="340dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="60dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="8dp"
-            app:cardBackgroundColor="@android:color/darker_gray">
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="#EDEFFA"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:padding="16dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="16dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Carnet Socio"
-                    android:textColor="@color/black"
                     android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="Carnet Club Deportivo"
+                    android:textColor="@color/black"
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
@@ -74,8 +127,8 @@
                     android:layout_height="150dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="8dp"
-                    android:src="@drawable/logo"
-                    android:scaleType="fitCenter"/>
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/logo" />
 
                 <TextView
                     android:id="@+id/nombreApellidoTextView"
@@ -114,110 +167,26 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-                <Button
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnBuscar"
-            android:layout_width="189dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="35dp"
-            android:layout_marginEnd="32dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="420dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="8dp"
             android:backgroundTint="#63C37B"
-            android:drawableTop="@drawable/iconMembershipCard"
-            android:gravity="center"
-            android:padding="8dp"
+            android:fontFamily="sans-serif-medium"
+            android:padding="12dp"
             android:text="Imprimir"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:cornerRadius="10dp"
-            app:elevation="4dp" />
+            app:cornerRadius="6dp" />
 
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
-
-    <LinearLayout
-        android:id="@+id/btnBas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:gravity="center"
-        android:orientation="horizontal"
-        >
-
-        <Button
-            android:id="@+id/btnInicio"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:backgroundTint="@android:color/white"
-            android:drawableTop="@drawable/iconNavbarHome"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Inicio"
-            android:textColor="@color/black"
-            android:textSize="10sp"
-            android:textStyle="bold"/>
-
-        <Button
-            android:id="@+id/btnInscribir"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:backgroundTint="@android:color/white"
-            android:drawableTop="@drawable/iconNavbarPersonAdd"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Inscribir"
-            android:textColor="@color/black"
-            android:textSize="10sp"
-            android:textStyle="bold"/>
-
-        <Button
-            android:id="@+id/btnClases"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:backgroundTint="@android:color/white"
-            android:drawableTop="@drawable/iconNavbarList"
-            android:drawablePadding="4dp"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Clases"
-            android:textColor="@color/black"
-            android:textSize="10sp"
-            android:textStyle="bold"/>
-
-        <Button
-            android:id="@+id/btnPagos"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:backgroundTint="@android:color/white"
-            android:drawableTop="@drawable/iconNavbarPayment"
-            android:drawablePadding="4dp"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Pagos"
-            android:textColor="@color/black"
-            android:textSize="10sp"
-            android:textStyle="bold"/>
-
-        <Button
-            android:id="@+id/btnList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:backgroundTint="@android:color/white"
-            android:drawableTop="@drawable/iconNavbarExpirations"
-            android:drawablePadding="4dp"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Vencimientos"
-            android:textColor="@color/black"
-            android:textSize="10sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
+    <include
+        layout="@layout/activity_menu_bar"/>
 
 </LinearLayout>
+

@@ -5,10 +5,10 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".ListadoClases"
     android:orientation="vertical"
-    android:background="@drawable/background_gradient"
-    tools:context=".CarnetBuscar"
-    android:padding="0dp">
+    android:padding="0dp"
+    android:background="@drawable/background_gradient">
 
     <View
         android:layout_width="match_parent"
@@ -18,7 +18,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
         android:orientation="horizontal"
         android:layout_marginTop="16dp"
         android:gravity="center_vertical">
@@ -26,10 +25,12 @@
         <ImageView
             android:id="@+id/imageViewCardLogo"
             android:layout_width="55dp"
+            android:layout_marginStart="15dp"
             android:layout_height="match_parent"
             android:layout_gravity="start|center_vertical"
             android:contentDescription="Logo"
             app:srcCompat="@drawable/logo" />
+
 
         <TextView
             android:layout_width="0dp"
@@ -40,6 +41,7 @@
             android:textStyle="bold"
             android:textColor="@color/blueHard"
             android:layout_marginStart="5dp" />
+
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -69,60 +71,90 @@
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/buscarSocioLabel"
         android:layout_width="match_parent"
-        android:layout_height="471dp"
-        android:layout_marginStart="15dp"
+        android:layout_height="559dp"
+        android:layout_marginStart="0dp"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="82dp"
+        android:layout_marginEnd="0dp"
         android:background="#FFFFFF"
         android:elevation="2dp"
         android:orientation="vertical"
-        android:padding="16dp"
-        app:cardCornerRadius="6dp">
+        android:padding="16dp">
 
         <TextView
+            android:id="@+id/txtLisSocios"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_marginStart="20sp"
             android:layout_marginTop="15sp"
             android:layout_marginBottom="16dp"
-            android:text="Buscar Socio"
+            android:text="Listado de socios"
             android:textColor="@color/blueHard"
             android:textSize="20sp"
             android:textStyle="bold" />
 
-
-        <EditText
-            android:id="@+id/dniEditText"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="80dp"
-            android:layout_marginEnd="32dp"
-            android:background="@color/white"
-            android:hint="Ingrese DNI Socio"
-            android:inputType="number"
-            android:padding="8dp"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnBuscar"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginStart="25dp"
+            android:layout_marginTop="52dp"
             android:layout_marginEnd="25dp"
+            app:boxBackgroundMode="outline"
+            app:cornerRadius="6dp"
+            app:hintEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtNroSocio"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:hint="Nro de Socio"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <CheckBox
+            android:id="@+id/checkBox2"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginBottom="10dp"
+            android:text="Apto físico entregado" />
+
+        <View
+            android:id="@+id/divider1"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="?android:attr/listDivider" />
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="145dp"
+            android:layout_weight="1"
+            android:padding="10dp" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="?android:attr/listDivider" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnInscription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="480dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="8dp"
             android:backgroundTint="#63C37B"
             android:fontFamily="sans-serif-medium"
             android:padding="12dp"
-            android:text="Buscar"
+            android:text="Inscribir Clase"
             android:textColor="@android:color/white"
             app:cornerRadius="6dp" />
+
 
     </androidx.cardview.widget.CardView>
 

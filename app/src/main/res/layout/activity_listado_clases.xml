@@ -7,227 +7,158 @@
     android:layout_height="match_parent"
     tools:context=".ListadoClases"
     android:orientation="vertical"
+    android:padding="0dp"
     android:background="@drawable/background_gradient">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="26dp"
+        android:background="#115495" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/imageViewCardLogo"
+            android:layout_width="55dp"
+            android:layout_marginStart="15dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start|center_vertical"
+            android:contentDescription="Logo"
+            app:srcCompat="@drawable/logo" />
+
 
         <TextView
-            android:id="@+id/txtClases"
-            android:layout_width="310dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="15dp"
-            android:textSize="23sp"
+            android:layout_weight="1"
+            android:text="Admin"
+            android:textSize="18sp"
             android:textStyle="bold"
-            android:text="Listado de clases"/>
+            android:textColor="@color/blueHard"
+            android:layout_marginStart="5dp" />
 
-        <ImageButton
-            android:id="@+id/btnExit"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/circular_button"
-            android:padding="6dp"
-            android:src="@drawable/Exit"
-            android:scaleType="centerInside"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="16dp"
+            android:gravity="end"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/btnExit"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:backgroundTint="@color/white"
+                android:contentDescription="Icono Salir"
+                android:src="@drawable/exit_to_app" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:text="Salir"
+                android:textColor="@color/blueHard"
+                android:textSize="12sp" />
+        </LinearLayout>
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewPerson"
-        android:layout_width="266dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="16dp"
-        android:layout_gravity="center_horizontal"
-        app:cardBackgroundColor="#24507C"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="8dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:padding="6dp">
-
-            <ImageView
-                android:id="@+id/imageViewCardLogo"
-                android:layout_width="55dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="start|center_vertical"
-                android:contentDescription="Logo"
-                app:srcCompat="@drawable/logo" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textViewCardName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start|center_vertical"
-                    android:layout_marginStart="6dp"
-                    android:text="Nombre Apellido"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textViewCardDNI"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start|center_vertical"
-                    android:layout_marginStart="6dp"
-                    android:text="DNI"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <EditText
-        android:id="@+id/txtNroSocio"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="25dp"
-        android:inputType="text"
-        android:paddingStart="15dp"
-        android:paddingEnd="15dp"
-        android:text="Nro Socio"
-        android:textColor="#80000000"
-        android:background="@color/white"
-        android:textSize="18sp"/>
-
-    <CheckBox
-        android:id="@+id/checkBox2"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginBottom="10dp"
-        android:text="Apto físico entregado" />
-
-    <View
-        android:id="@+id/divider1"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="?android:attr/listDivider" />
-
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_weight="1" />
-
-    <View
-        android:id="@+id/divider2"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="?android:attr/listDivider" />
-
-    <Button
-        android:id="@+id/btnInscription"
-        android:layout_width="180dp"
-        android:layout_height="80dp"
+        android:layout_height="559dp"
+        android:layout_marginStart="0dp"
         android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:layout_gravity="center"
-        android:backgroundTint="#63C37B"
-        app:cornerRadius="10dp"
-        android:text="Inscribir a clase"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:drawableTop="@drawable/iconClassAdd" />
+        android:layout_marginEnd="0dp"
+        android:background="#FFFFFF"
+        android:elevation="2dp"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <LinearLayout
-        android:id="@+id/btnBas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:gravity="center"
-        android:orientation="horizontal"
-        >
-
-        <Button
-            android:id="@+id/btnInicio"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:backgroundTint="@android:color/white"
-            android:drawableTop="@drawable/iconNavbarHome"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Inicio"
-            android:textColor="@color/black"
-            android:textSize="10sp"
-            android:textStyle="bold"/>
-
-        <Button
-            android:id="@+id/btnInscribir"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:backgroundTint="@android:color/white"
-            android:drawableTop="@drawable/iconNavbarPersonAdd"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Inscribir"
-            android:textColor="@color/black"
-            android:textSize="10sp"
-            android:textStyle="bold"/>
-
-        <Button
-            android:id="@+id/btnClases"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:backgroundTint="@android:color/white"
-            android:drawableTop="@drawable/iconNavbarList"
-            android:drawablePadding="4dp"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Clases"
-            android:textColor="@color/black"
-            android:textSize="10sp"
-            android:textStyle="bold"/>
-
-        <Button
-            android:id="@+id/btnPagos"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:backgroundTint="@android:color/white"
-            android:drawableTop="@drawable/iconNavbarPayment"
-            android:drawablePadding="4dp"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Pagos"
-            android:textColor="@color/black"
-            android:textSize="10sp"
-            android:textStyle="bold"/>
-
-        <Button
-            android:id="@+id/btnList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:backgroundTint="@android:color/white"
-            android:drawableTop="@drawable/iconNavbarExpirations"
-            android:drawablePadding="4dp"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="Vencimientos"
-            android:textColor="@color/black"
-            android:textSize="10sp"
+        <TextView
+            android:id="@+id/txtClases"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="15sp"
+            android:layout_marginBottom="16dp"
+            android:text="Listado de clases"
+            android:textColor="@color/blueHard"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
-    </LinearLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="52dp"
+            android:layout_marginEnd="25dp"
+            app:boxBackgroundMode="outline"
+            app:cornerRadius="6dp"
+            app:hintEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtNroSocio"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:hint="Nro de Socio"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <CheckBox
+            android:id="@+id/checkBox2"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginBottom="10dp"
+            android:text="Apto físico entregado" />
+
+        <View
+            android:id="@+id/divider1"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="?android:attr/listDivider" />
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="145dp"
+            android:layout_weight="1"
+            android:padding="10dp" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="?android:attr/listDivider" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnInscription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="480dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="#63C37B"
+            android:fontFamily="sans-serif-medium"
+            android:padding="12dp"
+            android:text="Inscribir Clase"
+            android:textColor="@android:color/white"
+            app:cornerRadius="6dp" />
+
+
+    </androidx.cardview.widget.CardView>
+
+    <include
+        layout="@layout/activity_menu_bar"/>
 
 </LinearLayout>

@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.clubdeportivo"
-    compileSdk = 34
+    namespace = "com.example.myclubdeportivo"
+    compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.clubdeportivo"
+        applicationId = "com.example.myclubdeportivo"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -36,15 +36,13 @@ android {
 }
 
 dependencies {
-    implementation(libs.google.material.v180)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.gridlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
 }
