@@ -1,9 +1,11 @@
 package com.example.myclubdeportivo
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.example.myclubdeportivo.model.Member
 
 class DataBaseHelper (context: Context):
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION)
@@ -12,7 +14,7 @@ class DataBaseHelper (context: Context):
       companion object {
         // Config DB
         private val DATABASE_NAME = "ClubDeportivo.db"
-        private val DATABASE_VERSION = 2
+        private val DATABASE_VERSION = 4
 
         // User table
         private val TABLE_USERS = "Users"
@@ -43,10 +45,10 @@ class DataBaseHelper (context: Context):
                 "$MEMBER_COLUMN_FIRST_NAME TEXT NOT NULL," +
                 "$MEMBER_COLUMN_LAST_NAME TEXT NOT NULL," +
                 "$MEMBER_COLUMN_DOCUMENT_TYPE TEXT NOT NULL," +
-                "$MEMBER_COLUMN_DOCUMENT_NUMBER INTEGER NOT NULL," +
+                "$MEMBER_COLUMN_DOCUMENT_NUMBER TEXT NOT NULL," +
                 "$MEMBER_COLUMN_ADDRESS TEXT NOT NULL," +
-                "$MEMBER_COLUMN_PHONE INTEGER NOT NULL," +
-                "$MEMBER_COLUMN_IS_MEMBER INTEGER NOT NULL)")
+                "$MEMBER_COLUMN_PHONE TEXT NOT NULL," +
+                "$MEMBER_COLUMN_IS_MEMBER TEXT NOT NULL)")
 
         db.execSQL(createUsersTable)
         db.execSQL(createMembersTable)
@@ -55,6 +57,7 @@ class DataBaseHelper (context: Context):
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL("DROP TABLE IF EXISTS $TABLE_USERS")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_MEMBERS")
         onCreate(db)
     }
 
@@ -83,7 +86,7 @@ class DataBaseHelper (context: Context):
         return validateUser
     }
 
-    fun registerMember(firstName: String, lastName: String, documentType: String, documentNumber: Long, address: String, phone: Long, isMember: Boolean): Long {
+    fun registerMember(firstName: String, lastName: String, documentType: String, documentNumber: String, address: String, phone: String, isMember: Boolean): Long {
         val db = this.writableDatabase
         val values = ContentValues().apply {
             put("first_name", firstName)
@@ -92,7 +95,7 @@ class DataBaseHelper (context: Context):
             put("document_number", documentNumber)
             put("address", address)
             put("phone", phone)
-            put("is_member", if (isMember) 1 else 0)
+            put("is_member", isMember)
         }
         return db.insert("members", null, values)
     }

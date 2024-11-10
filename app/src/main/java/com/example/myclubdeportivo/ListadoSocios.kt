@@ -12,7 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 class ListadoSocios : MenuBar() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_listado_clases)
+        setContentView(R.layout.activity_listado_socios)
 
         val btnExit = findViewById<ImageButton>(R.id.btnExit)
         val btnInicio = findViewById<Button>(R.id.btnInicio)

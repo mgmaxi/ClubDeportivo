@@ -31,11 +31,11 @@
             app:srcCompat="@drawable/logo" />
 
 <TextView
-            android:id="@+id/nombreUsuarioTextView"
+            android:id="@+id/UserTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Hola, Admin"
+            android:text="Bienvenido!"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/blueHard"

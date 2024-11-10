@@ -2,12 +2,9 @@ package com.example.myclubdeportivo
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
-import android.widget.RadioButton
 import android.widget.RadioGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
@@ -18,8 +15,6 @@ class InscribirSocio : AppCompatActivity() {
         setContentView(R.layout.activity_inscribir_socio)
 
         val dbHelper = DataBaseHelper(this)
-
-
 
         val btnExit = findViewById<ImageButton>(R.id.btnExit)
         val btnInicio = findViewById<Button>(R.id.btnInicio)
@@ -56,7 +51,7 @@ class InscribirSocio : AppCompatActivity() {
                     return
                 }
 
-                val result = dbHelper.registerMember(firstName, lastName, documentType, documentNumber.toLong(), address, phone.toLong(), isMember)
+                val result = dbHelper.registerMember(firstName, lastName, documentType, documentNumber, address, phone, isMember)
 
                 if (result > 0) {
                     showToast("$firstName $lastName ha sido registrado con éxito")

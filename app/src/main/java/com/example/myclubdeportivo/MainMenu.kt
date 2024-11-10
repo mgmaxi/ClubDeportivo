@@ -1,22 +1,27 @@
 package com.example.myclubdeportivo
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
-import androidx.activity.enableEdgeToEdge
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class MainMenu : AppCompatActivity() {
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
 
+        val sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+        val username = sharedPreferences.getString("username", "")
+        val userTextView = findViewById<TextView>(R.id.UserTextView)
+
+        userTextView.text = "Bienvenido, $username!"
 
         val btnExit = findViewById<ImageButton>(R.id.btnExit)
-        val btnAddPartnerContainer = findViewById<CardView>(R.id.btnAddPartnerContainer)
+        val btnAddMemberContainer = findViewById<CardView>(R.id.btnAddPartnerContainer)
         val btnClassListContainer = findViewById<CardView>(R.id.btnClassListContainer)
         val btnPaymentsContainer = findViewById<CardView>(R.id.btnPaymentsContainer)
         val btnExpirationsContainer = findViewById<CardView>(R.id.btnExpirationsContainer)
@@ -26,10 +31,16 @@ class MainMenu : AppCompatActivity() {
         btnExit.setOnClickListener {
             finishAffinity()
         }
-        btnAddPartnerContainer.setOnClickListener {
+        btnAddMemberContainer.setOnClickListener {
             val intent = Intent(this, InscribirSocio::class.java)
             startActivity(intent)
         }
+
+        btnListSocContainer.setOnClickListener {
+            val intent = Intent(this, ListadoSocios::class.java)
+            startActivity(intent)
+        }
+
         btnClassListContainer.setOnClickListener {
             val intent = Intent(this, ListadoClases::class.java)
             startActivity(intent)

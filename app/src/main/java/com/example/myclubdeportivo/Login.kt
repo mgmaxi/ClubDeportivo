@@ -1,7 +1,9 @@
 package com.example.myclubdeportivo
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -16,10 +18,9 @@ class Login : AppCompatActivity() {
         val dbHelper = DataBaseHelper(this)
 
         val btnLogin = findViewById<Button>(R.id.btnLogin)
-        val btnTextViewSignin = findViewById<TextView>(R.id.textViewSignin)
-
         val editTextUsername = findViewById<EditText>(R.id.editTextUsername)
         val editTextPassword = findViewById<EditText>(R.id.editTextPassword)
+        val btnTextViewSignin = findViewById<TextView>(R.id.textViewSignin)
 
 
         btnLogin.setOnClickListener {
@@ -29,6 +30,12 @@ class Login : AppCompatActivity() {
             if (username.isNotEmpty() && password.isNotEmpty()) {
                 if (dbHelper.userExist(username, password)) {
                     Toast.makeText(this, "Login exitoso", Toast.LENGTH_SHORT).show()
+
+                    val sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
+                    editor.putString("username", username)
+                    editor.apply()
+
                     val intent = Intent(this, MainMenu::class.java)
                     startActivity(intent)
                 } else {
