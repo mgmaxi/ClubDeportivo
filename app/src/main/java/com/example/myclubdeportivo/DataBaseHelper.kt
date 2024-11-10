@@ -33,25 +33,28 @@ class DataBaseHelper (context: Context):
     }
 
     fun registerUser(username: String, password: String): Long {
-        val db = this.writableDatabase
-        val contentValues = ContentValues()
-        contentValues.put(COLUMN_USERNAME, username)
-        contentValues.put(COLUMN_PASSWORD, password)
+        if (!userExist(username, password)){
+            val db = this.writableDatabase
+            val contentValues = ContentValues()
+            contentValues.put(COLUMN_USERNAME, username)
+            contentValues.put(COLUMN_PASSWORD, password)
 
-        val success = db.insert(TABLE_USERS, null, contentValues)
-        db.close()
-        return success
+            val success = db.insert(TABLE_USERS, null, contentValues)
+            db.close()
+            return success
+        } else {
+            return -1
+        }
     }
 
-    fun validateLogin(username: String, password: String): Boolean {
+    fun userExist(username: String, password: String): Boolean {
         val db = this.readableDatabase
         val query = "SELECT * FROM $TABLE_USERS WHERE $COLUMN_USERNAME = ? AND $COLUMN_PASSWORD = ?"
         val cursor = db.rawQuery(query, arrayOf(username, password))
-        val loginSuccess = cursor.count > 0
+        val validateUser = cursor.count > 0
         cursor.close()
         db.close()
-        return loginSuccess
+        return validateUser
     }
-
 }
 

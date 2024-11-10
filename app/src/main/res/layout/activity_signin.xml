@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:padding="0dp"
     android:background="@drawable/background_gradient"
-    tools:context=".Signin">
+    tools:context=".SignIn">
 
         <View
             android:layout_width="match_parent"
@@ -26,7 +26,7 @@
             tools:srcCompat="@drawable/logo" />
 
         <EditText
-            android:id="@+id/editTextUsername"
+            android:id="@+id/signInEditTextUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -39,7 +39,7 @@
             />
 
         <EditText
-            android:id="@+id/editTextPassword"
+            android:id="@+id/signInEditTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"

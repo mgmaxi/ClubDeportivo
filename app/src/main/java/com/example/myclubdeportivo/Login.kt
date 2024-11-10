@@ -6,10 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +27,7 @@ class Login : AppCompatActivity() {
             val password = editTextPassword.text.toString().trim()
 
             if (username.isNotEmpty() && password.isNotEmpty()) {
-                if (dbHelper.validateLogin(username, password)) {
+                if (dbHelper.userExist(username, password)) {
                     Toast.makeText(this, "Login exitoso", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, MainMenu::class.java)
                     startActivity(intent)
@@ -43,7 +40,7 @@ class Login : AppCompatActivity() {
         }
 
         btnTextViewSignin.setOnClickListener {
-            val intent = Intent(this, Signin::class.java)
+            val intent = Intent(this, SignIn::class.java)
             startActivity(intent)
         }
     }
