@@ -111,7 +111,7 @@
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/rbSocio"
+                    android:id="@+id/rbMember"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="60sp"
@@ -121,7 +121,7 @@
                     android:textStyle="bold" />
 
                 <RadioButton
-                    android:id="@+id/rbNoSocio"
+                    android:id="@+id/rbNoMember"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -154,7 +154,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:hint="Nombre"
-                    android:inputType="textPersonName" />
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -170,7 +170,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:hint="Apellido"
-                    android:inputType="textPersonName" />
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -186,7 +186,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:hint="Tipo de documento"
-                    android:inputType="textPersonName" />
+                    android:inputType="" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -218,7 +218,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:hint="Domicilio"
-                    android:inputType="phone" />
+                    android:inputType="textPostalAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -234,7 +234,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:hint="Telefono"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton

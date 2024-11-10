@@ -10,13 +10,26 @@ class DataBaseHelper (context: Context):
 {
 
       companion object {
+        // Config DB
         private val DATABASE_NAME = "ClubDeportivo.db"
-        private val DATABASE_VERSION = 1
+        private val DATABASE_VERSION = 2
 
+        // User table
         private val TABLE_USERS = "Users"
         private val COLUMN_ID = "id"
         private val COLUMN_USERNAME = "username"
         private val COLUMN_PASSWORD = "password"
+
+        // Memeber table
+        private val TABLE_MEMBERS = "Members"
+        private val MEMBER_COLUMN_ID = "id"
+        private val MEMBER_COLUMN_FIRST_NAME = "first_name"
+        private val MEMBER_COLUMN_LAST_NAME = "last_name"
+        private val MEMBER_COLUMN_DOCUMENT_TYPE = "document_type"
+        private val MEMBER_COLUMN_DOCUMENT_NUMBER = "document_number"
+        private val MEMBER_COLUMN_ADDRESS = "address"
+        private val MEMBER_COLUMN_PHONE = "phone"
+        private val MEMBER_COLUMN_IS_MEMBER = "is_member"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
@@ -24,7 +37,20 @@ class DataBaseHelper (context: Context):
                 + "$COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + "$COLUMN_USERNAME TEXT, "
                 + "$COLUMN_PASSWORD TEXT)")
+
+        val createMembersTable = ("CREATE TABLE $TABLE_MEMBERS (" +
+                "$MEMBER_COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "$MEMBER_COLUMN_FIRST_NAME TEXT NOT NULL," +
+                "$MEMBER_COLUMN_LAST_NAME TEXT NOT NULL," +
+                "$MEMBER_COLUMN_DOCUMENT_TYPE TEXT NOT NULL," +
+                "$MEMBER_COLUMN_DOCUMENT_NUMBER INTEGER NOT NULL," +
+                "$MEMBER_COLUMN_ADDRESS TEXT NOT NULL," +
+                "$MEMBER_COLUMN_PHONE INTEGER NOT NULL," +
+                "$MEMBER_COLUMN_IS_MEMBER INTEGER NOT NULL)")
+
         db.execSQL(createUsersTable)
+        db.execSQL(createMembersTable)
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -56,5 +82,20 @@ class DataBaseHelper (context: Context):
         db.close()
         return validateUser
     }
+
+    fun registerMember(firstName: String, lastName: String, documentType: String, documentNumber: Long, address: String, phone: Long, isMember: Boolean): Long {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put("first_name", firstName)
+            put("last_name", lastName)
+            put("document_type", documentType)
+            put("document_number", documentNumber)
+            put("address", address)
+            put("phone", phone)
+            put("is_member", if (isMember) 1 else 0)
+        }
+        return db.insert("members", null, values)
+    }
+
 }
 
