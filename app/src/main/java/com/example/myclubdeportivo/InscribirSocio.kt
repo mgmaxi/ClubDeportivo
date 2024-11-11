@@ -24,19 +24,47 @@ class InscribirSocio : AppCompatActivity() {
         val btnList = findViewById<Button>(R.id.btnList)
         val btnInscription = findViewById<Button>(R.id.btnInscription)
 
+        val etFirstName = findViewById<TextInputEditText>(R.id.txtName)
+        val etLastName = findViewById<TextInputEditText>(R.id.txtSurname)
+        val etDocumentType = findViewById<TextInputEditText>(R.id.txtType)
+        val etDocumentNumber = findViewById<TextInputEditText>(R.id.txtNumber)
+        val etAddress = findViewById<TextInputEditText>(R.id.txtDomicile)
+        val etPhone = findViewById<TextInputEditText>(R.id.txtTelephone)
+        val rgOptions = findViewById<RadioGroup>(R.id.rgOptions)
+
         fun showToast(message: String) {
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
         }
 
+         fun clearFormFields() {
+            etFirstName.text?.clear()
+            etLastName.text?.clear()
+            etDocumentType.text?.clear()
+            etDocumentNumber.text?.clear()
+            etAddress.text?.clear()
+            etPhone.text?.clear()
+            rgOptions.clearCheck()
+
+            etFirstName.clearFocus()
+            etLastName.clearFocus()
+            etDocumentType.clearFocus()
+            etDocumentNumber.clearFocus()
+            etAddress.clearFocus()
+            etPhone.clearFocus()
+            rgOptions.clearFocus()
+        }
+
         fun registerMember() {
+
+            val firstName = etFirstName.text.toString().trim()
+            val lastName = etLastName.text.toString().trim()
+            val documentType = etDocumentType.text.toString().trim()
+            val documentNumber = etDocumentNumber.text.toString().trim()
+            val address = etAddress.text.toString().trim()
+            val phone = etPhone.text.toString().trim()
+
             try {
-                val firstName = findViewById<TextInputEditText>(R.id.txtName).text.toString().trim()
-                val lastName = findViewById<TextInputEditText>(R.id.txtSurname).text.toString().trim()
-                val documentType = findViewById<TextInputEditText>(R.id.txtType).text.toString().trim()
-                val documentNumber = findViewById<TextInputEditText>(R.id.txtNumber).text.toString().trim()
-                val address = findViewById<TextInputEditText>(R.id.txtDomicile).text.toString().trim()
-                val phone = findViewById<TextInputEditText>(R.id.txtTelephone).text.toString().trim()
-                val rgOptions = findViewById<RadioGroup>(R.id.rgOptions)
+
                 val isMember = when (rgOptions.checkedRadioButtonId) {
                     R.id.rbMember -> true
                     R.id.rbNoMember -> false
@@ -55,7 +83,7 @@ class InscribirSocio : AppCompatActivity() {
 
                 if (result > 0) {
                     showToast("$firstName $lastName ha sido registrado con éxito")
-                    finish()
+                    clearFormFields()
                 }
             }
             catch (e: Exception) {
