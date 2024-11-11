@@ -2,17 +2,28 @@ package com.example.myclubdeportivo
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageButton
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import android.widget.ListView
 
 class ListadoSocios : MenuBar() {
+
+    private lateinit var lvMemberList: ListView
+    private lateinit var dataBaseHelper: DataBaseHelper
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_listado_socios)
+
+        lvMemberList = findViewById(R.id.lvMembersList)
+        dataBaseHelper = DataBaseHelper(this)
+
+        val memberList = dataBaseHelper.getAllMembersAsString()
+        val memberAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, memberList)
+        lvMemberList.adapter = memberAdapter
+
 
         val btnExit = findViewById<ImageButton>(R.id.btnExit)
         val btnInicio = findViewById<Button>(R.id.btnInicio)

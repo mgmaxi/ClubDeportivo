@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/lvMembersList"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Payment"
@@ -216,7 +216,7 @@
                         android:id="@+id/rb1Cuota"
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
-                        android:layout_marginEnd="32dp"
+                        android:layout_marginEnd="12dp"
                         android:checked="false"
                         android:text="1 cuota" />
 
@@ -224,9 +224,16 @@
                         android:id="@+id/rb2Cuotas"
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
-                        android:layout_marginStart="50dp"
+                        android:layout_marginEnd="12dp"
                         android:checked="false"
                         android:text="3 cuotas" />
+
+                    <RadioButton
+                        android:id="@+id/rb3Cuotas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:checked="false"
+                        android:text="6 cuotas" />
                 </LinearLayout>
 
 

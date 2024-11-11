@@ -56,12 +56,12 @@ class InscribirSocio : AppCompatActivity() {
 
         fun registerMember() {
 
-            val firstName = etFirstName.text.toString().trim()
-            val lastName = etLastName.text.toString().trim()
-            val documentType = etDocumentType.text.toString().trim()
-            val documentNumber = etDocumentNumber.text.toString().trim()
-            val address = etAddress.text.toString().trim()
-            val phone = etPhone.text.toString().trim()
+            val firstName = etFirstName.getText().toString().trim()
+            val lastName = etLastName.getText().toString().trim()
+            val documentType = etDocumentType.getText().toString().trim()
+            val documentNumber = etDocumentNumber.getText().toString().trim()
+            val address = etAddress.getText().toString().trim()
+            val phone = etPhone.getText().toString().trim()
 
             try {
 
