@@ -8,7 +8,8 @@
     tools:context=".InscribirSocio"
     android:orientation="vertical"
     android:background="@drawable/background_gradient"
-    android:padding="0dp">
+    android:padding="0dp"
+    android:weightSum="1">
 
     <View
         android:layout_width="match_parent"
@@ -20,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:gravity="center_vertical">
 
 
@@ -54,16 +55,17 @@
 
             <ImageButton
                 android:id="@+id/btnExit"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:backgroundTint="@color/white"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:backgroundTint="@android:color/transparent"
                 android:contentDescription="Icono Salir"
                 android:src="@drawable/exit_to_app" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="14dp"
                 android:gravity="center"
                 android:text="Salir"
                 android:textColor="@color/blueHard"
@@ -73,10 +75,9 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="557dp"
-        android:layout_marginStart="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="0dp"
+        android:layout_marginStart="0dp"
         android:background="#FFFFFF"
         android:elevation="2dp"
         android:orientation="vertical"
@@ -86,7 +87,6 @@
             android:id="@+id/txtInscripcion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
             android:layout_marginStart="20sp"
             android:layout_marginTop="15sp"
             android:layout_marginBottom="16dp"
@@ -134,9 +134,10 @@
             </RadioGroup>
         </LinearLayout>
 
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="486dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="70dp"
             android:orientation="vertical"
             android:padding="16dp">
@@ -144,7 +145,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="6dp"
                 app:boxBackgroundMode="outline"
                 app:cornerRadius="6dp"
                 app:hintEnabled="true">
@@ -152,9 +153,12 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtName"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:hint="Nombre"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    android:paddingVertical="8dp"
+                    android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -168,9 +172,12 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtSurname"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:hint="Apellido"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:minHeight="48dp"
+                    android:paddingVertical="8dp"
+                    android:textSize="12sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -184,9 +191,12 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtType"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:hint="Tipo de documento"
-                    android:inputType="" />
+                    android:inputType=""
+                    android:minHeight="48dp"
+                    android:paddingVertical="8dp"
+                    android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -200,9 +210,12 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtNumber"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:hint="N° Documento"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:minHeight="48dp"
+                    android:paddingVertical="8dp"
+                    android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -216,9 +229,12 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtDomicile"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:hint="Domicilio"
-                    android:inputType="textPostalAddress" />
+                    android:inputType="textPostalAddress"
+                    android:minHeight="48dp"
+                    android:paddingVertical="8dp"
+                    android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -232,16 +248,19 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtTelephone"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:hint="Telefono"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:minHeight="48dp"
+                    android:paddingVertical="8dp"
+                    android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnInscription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="45dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginBottom="8dp"
                 android:backgroundTint="#63C37B"
                 android:fontFamily="sans-serif-medium"
@@ -257,6 +276,8 @@
 
 
     <include
-        layout="@layout/activity_menu_bar"/>
+        layout="@layout/activity_menu_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

@@ -57,11 +57,5 @@ class MainMenu : AppCompatActivity() {
             val intent = Intent(this, CarnetBuscar::class.java)
             startActivity(intent)
         }
-        btnMembershipCard.setOnClickListener {
-            val intent = Intent(this, ListadoSocios::class.java)
-            startActivity(intent)
-        }
-
-
     }
 }

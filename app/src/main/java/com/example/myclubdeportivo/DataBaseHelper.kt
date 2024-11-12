@@ -154,6 +154,12 @@ class DataBaseHelper (context: Context):
     }
 
 
+    fun getMemberByDocumentNumber(documentNumber: String): Cursor {
+        val db = readableDatabase
+        val query = "SELECT id, first_name, last_name, document_number FROM Members WHERE is_member = 1 AND document_number =?"
+        return db.rawQuery(query, arrayOf(documentNumber))
+    }
+
 
 
     fun registerMember(firstName: String, lastName: String, documentType: String, documentNumber: String, address: String, phone: String, isMember: Boolean): Long {

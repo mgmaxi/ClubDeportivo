@@ -51,16 +51,17 @@
 
             <ImageButton
                 android:id="@+id/btnExit"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:backgroundTint="@color/white"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:backgroundTint="@android:color/transparent"
                 android:contentDescription="Icono Salir"
                 android:src="@drawable/exit_to_app" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="14dp"
                 android:gravity="center"
                 android:text="Salir"
                 android:textColor="@color/blueHard"
@@ -95,6 +96,7 @@
             android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cvCarnet"
             android:layout_width="300dp"
             android:layout_height="340dp"
             android:layout_gravity="center_horizontal"
@@ -169,7 +171,7 @@
 
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnBuscar"
+            android:id="@+id/btnImprimir"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
