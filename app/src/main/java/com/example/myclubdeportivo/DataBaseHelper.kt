@@ -5,10 +5,8 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.icu.text.SimpleDateFormat
+import com.example.myclubdeportivo.model.Course
 import com.example.myclubdeportivo.model.Payment
-import java.util.Date
-import java.util.Locale
 
 class DataBaseHelper (context: Context):
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION)
@@ -17,7 +15,7 @@ class DataBaseHelper (context: Context):
       companion object {
         // Config DB
         private val DATABASE_NAME = "ClubDeportivo.db"
-        private val DATABASE_VERSION = 5
+        private val DATABASE_VERSION = 6
 
         // User table
         private val TABLE_USERS = "Users"
@@ -45,6 +43,17 @@ class DataBaseHelper (context: Context):
         private val PAYMENT_COLUMN_PAYMENT_METHOD = "payment_method"
         private val PAYMENT_COLUMN_INSTALLMENTS = "installments"
 
+        // Course table
+        private const val TABLE_COURSES = "Courses"
+        private const val COURSE_COLUMN_ID = "id"
+        private const val COURSE_COLUMN_NAME = "name"
+        private const val COURSE_COLUMN_PRICE = "price"
+
+        // Member-Course relationship table
+        private const val TABLE_MEMBER_COURSES = "MemberCourses"
+        private const val MEMBER_COURSE_COLUMN_MEMBER_ID = "member_id"
+        private const val MEMBER_COURSE_COLUMN_COURSE_ID = "course_id"
+        private const val MEMBER_COURSE_COLUMN_IS_PAID = "is_paid"
 
     }
 
@@ -72,16 +81,32 @@ class DataBaseHelper (context: Context):
                 "$PAYMENT_COLUMN_DATE TEXT NOT NULL," +
                 "$PAYMENT_COLUMN_PAYMENT_METHOD TEXT NOT NULL," +
                 "$PAYMENT_COLUMN_INSTALLMENTS TEXT NOT NULL)")
+        val createCoursesTable = ("CREATE TABLE $TABLE_COURSES ($COURSE_COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                " $COURSE_COLUMN_NAME TEXT NOT NULL, $COURSE_COLUMN_PRICE REAL NOT NULL)")
+
+        val createMemberCourseTable = ("""
+            CREATE TABLE $TABLE_MEMBER_COURSES (
+                $MEMBER_COURSE_COLUMN_MEMBER_ID INTEGER NOT NULL,
+                $MEMBER_COURSE_COLUMN_COURSE_ID INTEGER NOT NULL,
+                $MEMBER_COURSE_COLUMN_IS_PAID INTEGER DEFAULT 0,
+                FOREIGN KEY($MEMBER_COURSE_COLUMN_MEMBER_ID) REFERENCES $TABLE_MEMBERS($MEMBER_COLUMN_ID),
+                FOREIGN KEY($MEMBER_COURSE_COLUMN_COURSE_ID) REFERENCES $TABLE_COURSES($COURSE_COLUMN_ID)
+            )
+        """)
 
         db.execSQL(createUsersTable)
         db.execSQL(createMembersTable)
         db.execSQL(createPaymentsTable)
-
+        db.execSQL(createCoursesTable)
+        db.execSQL(createMemberCourseTable)
+        insertDefaultCourses(db)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL("DROP TABLE IF EXISTS $TABLE_USERS")
         db.execSQL("DROP TABLE IF EXISTS $TABLE_MEMBERS")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_COURSES")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_MEMBER_COURSES")
         db.execSQL("DROP TABLE IF EXISTS $TABLE_PAYMENTS")
         onCreate(db)
     }
@@ -111,22 +136,15 @@ class DataBaseHelper (context: Context):
         return validateUser
     }
 
-    fun getMemberIdByDocumentNumber(documentNumber: String): Long? {
+    fun getMemberIdByDocumentNumber(documentNumber: String): Int? {
         val db = this.readableDatabase
-        var memberId: Long? = null
+        var memberId: Int? = null
 
-        val cursor = db.query(
-            TABLE_MEMBERS,
-            arrayOf(MEMBER_COLUMN_ID),
-            "$MEMBER_COLUMN_DOCUMENT_NUMBER = ?",
-            arrayOf(documentNumber),
-            null,
-            null,
-            null
-        )
+        val query = "SELECT $MEMBER_COLUMN_ID FROM $TABLE_MEMBERS WHERE $MEMBER_COLUMN_DOCUMENT_NUMBER = ?"
+        val cursor = db.rawQuery(query, arrayOf(documentNumber))
 
         if (cursor.moveToFirst()) {
-            memberId = cursor.getLong(0)
+            memberId = cursor.getInt(cursor.getColumnIndexOrThrow(MEMBER_COLUMN_ID))
         }
 
         cursor.close()
@@ -134,6 +152,9 @@ class DataBaseHelper (context: Context):
 
         return memberId
     }
+
+
+
 
     fun registerMember(firstName: String, lastName: String, documentType: String, documentNumber: String, address: String, phone: String, isMember: Boolean): Long {
         val db = this.writableDatabase
@@ -163,13 +184,19 @@ class DataBaseHelper (context: Context):
         }
     }
 
-    fun getTotalPaymentsByDNI(dni: String): Double {
+    fun getTotalCoursesAmountByMemberId(memberId: Int?): Double {
         var totalAmount = 0.0
         val db = this.readableDatabase
         var cursor: Cursor? = null
 
         try {
-            cursor = db.rawQuery("SELECT SUM(amount) FROM payments WHERE dni = ?", arrayOf(dni))
+            cursor = db.rawQuery("""
+                SELECT SUM(c.$COURSE_COLUMN_PRICE) 
+                FROM $TABLE_MEMBER_COURSES mc 
+                JOIN $TABLE_COURSES c ON mc.$MEMBER_COURSE_COLUMN_COURSE_ID = c.$COURSE_COLUMN_ID 
+                WHERE mc.$MEMBER_COURSE_COLUMN_MEMBER_ID = ?
+            """.trimIndent(), arrayOf(memberId.toString()))
+
             if (cursor.moveToFirst()) {
                 totalAmount = cursor.getDouble(0) ?: 0.0
             }
@@ -230,6 +257,86 @@ class DataBaseHelper (context: Context):
 
         return membersList
     }
+
+    fun getAllCourses(): List<Course> {
+        val coursesList = mutableListOf<Course>()
+        val db = this.readableDatabase
+
+        val cursor = db.query(TABLE_COURSES, arrayOf(COURSE_COLUMN_ID, COURSE_COLUMN_NAME, COURSE_COLUMN_PRICE), null, null, null, null, null)
+
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(cursor.getColumnIndex(COURSE_COLUMN_ID))
+                val name = cursor.getString(cursor.getColumnIndex(COURSE_COLUMN_NAME))
+                val price = cursor.getInt(cursor.getColumnIndex(COURSE_COLUMN_PRICE))
+                coursesList.add(Course(id, name, price))
+            } while (cursor.moveToNext())
+        }
+
+        cursor.close()
+        db.close()
+
+        return coursesList
+    }
+
+    fun registerMemberCourse(memberId: Int, courseId: Int): Long {
+        val db = this.writableDatabase
+
+        val contentValues = ContentValues().apply {
+            put(MEMBER_COURSE_COLUMN_MEMBER_ID, memberId)
+            put(MEMBER_COURSE_COLUMN_COURSE_ID, courseId)
+        }
+
+        return db.insert(TABLE_MEMBER_COURSES, null, contentValues).also { db.close() }
+    }
+
+    fun isMemberAlreadyEnrolledInCourse(memberId: Int?, courseId: Int): Boolean {
+        val db = this.readableDatabase
+        val query = "SELECT * FROM $TABLE_MEMBER_COURSES WHERE $MEMBER_COURSE_COLUMN_MEMBER_ID = ? AND $MEMBER_COURSE_COLUMN_COURSE_ID = ?"
+        val cursor = db.rawQuery(query, arrayOf(memberId.toString(), courseId.toString()))
+
+        val isEnrolled = cursor.count > 0
+        cursor.close()
+        db.close()
+
+        return isEnrolled
+    }
+
+
+
+    fun markDebtAsPaid(memberId: Int?) {
+        val db = this.writableDatabase
+
+        val contentValues = ContentValues().apply {
+            put(MEMBER_COURSE_COLUMN_IS_PAID, 1)
+        }
+
+        db.update(TABLE_MEMBER_COURSES, contentValues, "$MEMBER_COURSE_COLUMN_MEMBER_ID = ?", arrayOf(memberId.toString()))
+        db.close()
+    }
+
+    private fun insertDefaultCourses(db: SQLiteDatabase) {
+        val courses = listOf(
+            Pair("Yoga", 17000),
+            Pair("Pilates", 16500),
+            Pair("Zumba", 14500),
+            Pair("Futbol", 15000),
+            Pair("Natación", 20000),
+            Pair("Boxeo", 7500)
+        )
+
+        for (course in courses) {
+            val contentValues = ContentValues().apply {
+                put(COURSE_COLUMN_NAME, course.first)
+                put(COURSE_COLUMN_PRICE, course.second)
+            }
+            db.insert(TABLE_COURSES, null, contentValues)
+        }
+    }
+
+
+
+
 
 
 

@@ -1,5 +1,6 @@
 package com.example.myclubdeportivo
 
+import android.annotation.SuppressLint
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.view.View
@@ -18,6 +19,7 @@ import java.util.Locale
 class Payment : AppCompatActivity() {
     private lateinit var dbHelper: DataBaseHelper
 
+    @SuppressLint("DefaultLocale")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment)
@@ -30,7 +32,6 @@ class Payment : AppCompatActivity() {
         val rbCard = findViewById<RadioButton>(R.id.rbCard)
         val rgOptions: RadioGroup = findViewById(R.id.rgOptions)
         val rgCuotas: RadioGroup = findViewById(R.id.rgCuotas)
-        val discountTextView: TextView = findViewById(R.id.discountTextView)
         val dniEditText = findViewById<EditText>(R.id.dniEditText)
         val importeTextView = findViewById<TextView>(R.id.importeTextView)
 
@@ -38,17 +39,15 @@ class Payment : AppCompatActivity() {
             finishAffinity()
         }
 
-        rgOptions.setOnCheckedChangeListener { group, checkedId ->
+        rgOptions.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.rbCash -> {
                     rgCuotas.clearCheck()
                     findViewById<RadioButton>(R.id.rb1Cuota).isChecked = true
                     rgCuotas.visibility = View.GONE
-                    discountTextView.visibility = View.VISIBLE
                 }
                 R.id.rbCard -> {
                     rgCuotas.visibility = View.VISIBLE
-                    discountTextView.visibility = View.GONE
                 }
             }
         }
@@ -61,25 +60,24 @@ class Payment : AppCompatActivity() {
             }
 
             val memberId = dbHelper.getMemberIdByDocumentNumber(documentNumber)
-            val totalPayments = dbHelper.getTotalPaymentsByDNI(dniEditText.toString())
-            importeTextView.text = totalPayments.toString()
 
             if (memberId != null) {
+                val totalAmount = dbHelper.getTotalCoursesAmountByMemberId(memberId)
 
-                val amount = if (rbCash.isChecked) {
-                    totalPayments * 0.90
+                importeTextView.text = String.format("Importe total a pagar: $%.2f", totalAmount)
+
+                val amountToPay = if (rbCash.isChecked) {
+                    totalAmount * 0.90
                 } else {
-                    totalPayments
+                    totalAmount
                 }
 
                 val installments = when (rgCuotas.checkedRadioButtonId) {
-                    R.id.rb1Cuota -> "1"
-                    R.id.rb2Cuotas -> "3"
-                    R.id.rb3Cuotas -> "6"
-                    else -> "1"
+                    R.id.rb1Cuota -> 1
+                    R.id.rb2Cuotas -> 3
+                    R.id.rb3Cuotas -> 6
+                    else -> 1
                 }
-
-                val paymentMethod = if (rbCash.isChecked) "Cash" else "Card"
 
                 fun getCurrentDate(): String {
                     return SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
@@ -87,19 +85,20 @@ class Payment : AppCompatActivity() {
 
                 val newPayment = Payment(
                     memberId = memberId.toString(),
-                    amount = amount.toString(),
+                    amount = String.format("%.2f", amountToPay),
                     date = getCurrentDate(),
-                    paymentMethod = paymentMethod,
-                    installments = installments
+                    paymentMethod = if (rbCash.isChecked) "Cash" else "Card",
+                    installments = installments.toString()
                 )
+
                 dbHelper.addPayment(newPayment)
 
-                Toast.makeText(this, "Pago registrado con éxito", Toast.LENGTH_SHORT).show()
-            }
-        else {
-                Toast.makeText(this, "No se encontró un miembro con ese número de documento", Toast.LENGTH_SHORT).show()
-        }
-    }
+                dbHelper.markDebtAsPaid(memberId)
 
+                Toast.makeText(this, "Pago registrado con éxito.", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "No se encontró un socio con ese número de documento.", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }

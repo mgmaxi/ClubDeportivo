@@ -1,48 +1,82 @@
 package com.example.myclubdeportivo
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import android.widget.ImageButton
-import androidx.activity.enableEdgeToEdge
+import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.ListView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.example.myclubdeportivo.adapters.CourseAdapter
+import com.example.myclubdeportivo.model.Course
 
-class ListadoClases : MenuBar() {
+class ListadoClases : AppCompatActivity() {
+    private lateinit var dbHelper: DataBaseHelper
+    private lateinit var listViewCourses: ListView
+    private lateinit var btnInscribir: Button
+    private lateinit var txtNroSocio: EditText
+    private lateinit var checkBoxPhysicalFitness: CheckBox
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_listado_clases)
 
-        val btnExit = findViewById<ImageButton>(R.id.btnExit)
-        val btnInicio = findViewById<Button>(R.id.btnInicio)
-        val btnInscribir = findViewById<Button>(R.id.btnInscribir)
-        val btnClases = findViewById<Button>(R.id.btnClases)
-        val btnPagos = findViewById<Button>(R.id.btnPagos)
-        val btnList = findViewById<Button>(R.id.btnList)
+        dbHelper = DataBaseHelper(this)
+        listViewCourses = findViewById(R.id.lvCoursesList)
+        btnInscribir = findViewById(R.id.btnInscriptionCourse)
+        txtNroSocio = findViewById(R.id.txtNroSocio)
+        checkBoxPhysicalFitness = findViewById(R.id.physicalFitness)
 
-        btnExit.setOnClickListener {
-            finishAffinity()
-        }
-        btnInicio.setOnClickListener {
-            val intent = Intent(this, MainMenu::class.java)
-            startActivity(intent)
-        }
+        loadCourses()
+
         btnInscribir.setOnClickListener {
-            val intent = Intent(this, InscribirSocio::class.java)
-            startActivity(intent)
+            validateAndRegister()
         }
-        btnClases.setOnClickListener {
-            val intent = Intent(this, ListadoClases::class.java)
-            startActivity(intent)
+    }
+
+    private fun loadCourses() {
+        val courses: List<Course> = dbHelper.getAllCourses()
+
+        val adapter = CourseAdapter(this, courses)
+        listViewCourses.adapter = adapter
+    }
+
+    private fun validateAndRegister() {
+        val documentNumber = txtNroSocio.text.toString()
+
+        if (documentNumber.isEmpty()) {
+            Toast.makeText(this, "Por favor ingresa el número de documento", Toast.LENGTH_SHORT).show()
+            return
         }
-        btnPagos.setOnClickListener {
-            val intent = Intent(this, Payment::class.java)
-            startActivity(intent)
+
+        val memberId = dbHelper.getMemberIdByDocumentNumber(documentNumber)
+
+        if (memberId == null) {
+            Toast.makeText(this, "No se encontró un socio con ese número de documento $memberId $documentNumber", Toast.LENGTH_SHORT).show()
+            return
         }
-        btnList.setOnClickListener {
-            val intent = Intent(this, Vencimientos::class.java)
-            startActivity(intent)
+
+
+        if (!checkBoxPhysicalFitness.isChecked) {
+            Toast.makeText(this, "Debes confirmar que el apto físico ha sido entregado", Toast.LENGTH_SHORT).show()
+            return
         }
+
+        val selectedCourses = (listViewCourses.adapter as CourseAdapter).getSelectedCourses()
+
+        if (selectedCourses.isEmpty()) {
+            Toast.makeText(this, "Debes seleccionar al menos una clase para inscribirte", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        for (course in selectedCourses) {
+            if (!dbHelper.isMemberAlreadyEnrolledInCourse(memberId, course.id)) {
+                dbHelper.registerMemberCourse(memberId, course.id)
+                Toast.makeText(this, "Inscripción exitosa en la clase ${course.name}", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Ya estás inscrito en la clase ${course.name}", Toast.LENGTH_SHORT).show()
+            }
+        }
+
     }
 }
